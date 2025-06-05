@@ -30,9 +30,9 @@ public class SecurityConfig {
 
         http.csrf(csrf -> csrf.disable())
                 .authorizeRequests()
-                .requestMatchers("/task/**").hasAnyRole(String.valueOf(Role.ADMIN))
+                .requestMatchers("/tasks/**").hasAnyRole(String.valueOf(Role.ADMIN))
                 .requestMatchers("/users/**").hasAnyRole(String.valueOf(Role.USER),String.valueOf(Role.ADMIN))
-                .requestMatchers("/auth/login").permitAll()
+                .requestMatchers("/auth/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and().exceptionHandling(ex -> ex.authenticationEntryPoint(point))

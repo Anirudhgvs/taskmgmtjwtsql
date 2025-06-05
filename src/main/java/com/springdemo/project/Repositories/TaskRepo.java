@@ -2,14 +2,13 @@ package com.springdemo.project.Repositories;
 
 import com.springdemo.project.Entity.Task;
 import com.springdemo.project.Entity.User;
-import org.bson.types.ObjectId;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface TaskRepo extends MongoRepository<Task, ObjectId> {
+@Repository
+public interface TaskRepo extends JpaRepository<Task, String> {
 
-    List<Task> findByAssignedTo(User user);
-
-    void deleteById(ObjectId id);
+    void deleteById(String id);
 }

@@ -13,13 +13,7 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    private UserService userService;
-
-    @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody User request) {
-        userService.createUser(request);
-        return ResponseEntity.ok("User registered successfully");
-    }
+    UserService userService;
 
     @GetMapping("/me")
     public ResponseEntity<User> fetchUser(@RequestBody User request) {

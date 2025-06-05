@@ -5,7 +5,6 @@ import com.springdemo.project.Entity.Task;
 import com.springdemo.project.Entity.User;
 import com.springdemo.project.Repositories.UserRepo;
 import com.springdemo.project.Service.TaskService;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,18 +23,10 @@ public class TaskController {
 
     @PostMapping
     public ResponseEntity<Task> create(@RequestBody TaskDTO request) {
-        User assignedUser = userRepository.findById(new ObjectId(request.getAssignedTo()))
-                .orElseThrow(() -> new RuntimeException("Assigned user not found"));
-
-        User creator = userRepository.findById(new ObjectId(request.getCreatedBy()))
-                .orElseThrow(() -> new RuntimeException("Creator user not found"));
-
         Task task = new Task();
         task.setTitle(request.getTitle());
         task.setDescription(request.getDescription());
         task.setDueDate(request.getDueDate());
-        task.setAssignedTo(assignedUser);
-        task.setCreatedBy(creator);
         return ResponseEntity.ok(taskService.createTask(task));
     }
 
@@ -45,17 +36,17 @@ public class TaskController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Task> getById(@PathVariable ObjectId id) {
+    public ResponseEntity<Task> getById(@PathVariable String id) {
         return ResponseEntity.ok(taskService.getTaskById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Task> update(@PathVariable ObjectId id, @RequestBody Task task) {
+    public ResponseEntity<Task> update(@PathVariable String id, @RequestBody Task task) {
         return ResponseEntity.ok(taskService.updateTask(id, task));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable ObjectId id) {
+    public ResponseEntity<Void> delete(@PathVariable String id) {
         taskService.deleteTask(id);
         return ResponseEntity.noContent().build();
     }

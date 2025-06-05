@@ -14,6 +14,4 @@ public class TaskDTO {
     private String title;
     private String description;
     private Date dueDate;
-    private String assignedTo;
-    private String createdBy;
 }

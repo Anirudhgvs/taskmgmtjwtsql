@@ -29,7 +29,7 @@ public class UserService {
     public Boolean createUser(User userEntry) {
         try {
             userEntry.setPassword(passwordEncoder.encode(userEntry.getPassword()));
-            userRepo.insert(userEntry);
+            userRepo.save(userEntry);
             return true;
         } catch (Exception e){
             return false;

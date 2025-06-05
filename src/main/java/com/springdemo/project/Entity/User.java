@@ -1,18 +1,14 @@
 package com.springdemo.project.Entity;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
 import lombok.*;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.Id;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@Document
+@Entity
+@Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,7 +17,8 @@ import java.util.List;
 public class User {
 
     @Id
-    ObjectId id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
     String username;
 

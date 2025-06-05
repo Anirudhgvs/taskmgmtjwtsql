@@ -1,15 +1,17 @@
 package com.springdemo.project.Entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.*;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 import java.util.List;
 
-@Document
+@Entity
+@Table(name = "tasks")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,7 +20,8 @@ import java.util.List;
 public class Task {
 
     @Id
-    ObjectId id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
     String title;
 
@@ -29,10 +32,4 @@ public class Task {
     Status status;
 
     Priority priority;
-
-    @DBRef
-    User assignedTo;
-
-    @DBRef
-    User createdBy;
 }
