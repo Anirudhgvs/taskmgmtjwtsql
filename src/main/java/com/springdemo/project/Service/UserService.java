@@ -36,11 +36,6 @@ public class UserService {
         }
     }
 
-//    public UserEntry createAdminUser(UserEntry userEntry) {
-//        userEntry.setPassword(passwordEncoder.encode(userEntry.getPassword()));
-//        userEntry.setRoles(Collections.singletonList("ADMIN"));
-//    }
-
     public Optional<User> getByUserName(String userName) {
         return Optional.ofNullable(userRepo.findByUsername(userName));
     }
