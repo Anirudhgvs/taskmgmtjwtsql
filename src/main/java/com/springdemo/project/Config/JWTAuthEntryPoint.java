@@ -37,7 +37,6 @@ public class JWTAuthEntryPoint implements AuthenticationEntryPoint {
             errorMessage = "Your account is " + authException.getMessage().toLowerCase() + ". Please contact support.";
         }
         // Add more specific checks if you have custom AuthenticationExceptions or needs
-
         response.setStatus(statusCode);
         response.setContentType("application/json"); // Often better to return JSON for API errors
         PrintWriter writer = response.getWriter();
